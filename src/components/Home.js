@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Home.css";
 import axios from "axios";
 import NewsContainer from "./NewsContainer";
@@ -16,6 +16,11 @@ export default function Home() {
 		setData(response.data.articles);
 	};
 
+	const fetchAndClear = () => {
+		fetchData();
+		setInputVal("");
+	};
+
 	useEffect(() => {
 		fetchData();
 	}, []);
@@ -30,8 +35,8 @@ export default function Home() {
 			<p className="slogan">The spiciest place to get Crypto News</p>
 
 			<div>
-				<input type="text" onChange={handleInputChange} />
-				<button className="search-button" onClick={fetchData}>
+				<input type="text" value={inputVal} onChange={handleInputChange} />
+				<button className="search-button" onClick={fetchAndClear}>
 					Search News
 				</button>
 			</div>
