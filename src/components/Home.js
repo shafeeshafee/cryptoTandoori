@@ -16,11 +16,6 @@ export default function Home() {
 		setData(response.data.articles);
 	};
 
-	const handleButtonChange = (e) => {
-		fetchData();
-		setInputVal();
-	};
-
 	useEffect(() => {
 		fetchData();
 	}, []);
@@ -36,7 +31,7 @@ export default function Home() {
 
 			<div>
 				<input type="text" onChange={handleInputChange} />
-				<button className="search-button" onClick={handleButtonChange}>
+				<button className="search-button" onClick={fetchData}>
 					Search News
 				</button>
 			</div>
